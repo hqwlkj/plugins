@@ -1,0 +1,314 @@
+@charset "UTF-8";
+@import "tobe/function";
+
+//Color
+$primary-color: #3a90d1 !default;
+$info-color: #3a90d1 !default;
+$success-color: #87d068;
+$error-color: #f50;
+$warning-color: #fa0;
+
+@mixin font-dpr($fonts-size) {
+  font-size: $fonts-size;
+  [data-dpr="2"] & {
+    font-size: $fonts-size * 2;
+  }
+  [data-dpr="3"] & {
+    font-size: $fonts-size * 3;
+  }
+}
+
+//Reset CSS
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  padding: 0;
+  margin: 0;
+  font-family: "黑体", "微软雅黑", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  border-spacing: 0;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-weight: normal;
+  font-style: normal;
+}
+
+strong {
+  font-weight: bold;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  color: #444;
+}
+
+q:before,
+q:after {
+  content: '';
+}
+
+abbr,
+acronym {
+  border: 0;
+}
+
+@font-face {
+  font-family: 'iconfont';  /* project id 211029 */
+  src: url('//at.alicdn.com/t/font_7u9qaivb7d9m5cdi.eot');
+  src: url('//at.alicdn.com/t/font_7u9qaivb7d9m5cdi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_7u9qaivb7d9m5cdi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_7u9qaivb7d9m5cdi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_7u9qaivb7d9m5cdi.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont";
+  font-size: 16px;
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.clearfix {
+  zoom: 1;
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both
+  }
+}
+
+/* Custom CSS
+ * --------------------------------------- */
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  background-origin: content-box;
+  -webkit-background-origin: content-box;
+  -webkit-overflow-scrolling: touch;
+  background: #ffffff;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.page {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  @include flex-direction;
+  .page-nav {
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: $primary-color;
+    color: #ffffff;
+    display: table;
+    min-height: 1.40625rem;
+    line-height: 1.40625rem;
+    @include font-dpr(18px);
+    text-align: center;
+    zoom: 1;
+    .nav-left, .nav-right {
+      position: relative;
+      z-index: 20;
+      height: 1.40625rem;
+      padding: 6px 12px;
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      display: inline-block;
+      @include font-dpr(20px);
+      color: #ffffff;
+      font-weight: 400;
+      text-align: center;
+      background-color: $primary-color;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .nav-title {
+      position: absolute;
+      text-align: center;
+      white-space: nowrap;
+      right: 1.25rem;
+      left: 1.25rem;
+      width: auto;
+      height: 1.40625rem;
+      line-height: 2.025rem;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: table-cell; //主要是这个属性
+      vertical-align: middle;
+      .logo {
+        height: 0.9375rem;
+      }
+    }
+    .nav-left {
+      float: left !important;
+    }
+    .nav-right {
+      float: right !important;
+    }
+    &:before {
+
+    }
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+.inner {
+  width: 100%;
+}
+
+
+
+.flex-box {
+  display: flex;
+}
+
+.flex-v-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-m {
+  /*子元素沿主轴对齐方式居中*/
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  /*子元素沿侧轴对齐方式垂直居中*/
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.flex-d {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  display: flex;
+}
+@mixin font-dpr($fonts-size) {
+  font-size: $fonts-size;
+  [data-dpr="2"] & {
+    font-size: $fonts-size * 2;
+  }
+  [data-dpr="3"] & {
+    font-size: $fonts-size * 3;
+  }
+}
