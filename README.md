@@ -17,7 +17,7 @@
 
 
 ### Loading
-
+> 显示一个加载窗口
 ```
     /**
      * 参数说明
@@ -36,6 +36,8 @@
 
 ### alert
 
+>显示一段警告消息，有一个确认按钮。
+
 ```
     /** 参数说明
      * @param text      自定义的消息内容    （必传参数）
@@ -44,14 +46,28 @@
      */
      
     $.alert("自定义的消息内容");
+    $.alert("自定义的消息内容", "自定义的标题");
+    $.alert("自定义的消息内容", function() {
+      //点击确认后的回调函数
+    });
+    $.alert("自定义的消息内容", "标题", function() {
+      //点击确认后的回调函数
+    });
     
-    $.alert("自定义的消息内容", "这是标题", function() {
-        console.log("点击确认后的回调函数");
+    //如果参数过多，通过 object 方式传入
+    $.alert({
+      title: '标题',
+      text: '内容文案',
+      onOK: function () {
+        //点击确认
+      }
     });
 
 ```
 
 ### confirm
+
+>显示一段确认消息，有一个确认按钮和一个取消按钮
 
 ```
     /**
@@ -62,27 +78,32 @@
      * @param onCancel  取消回调函数
      */
      
+    $.confirm("自定义的消息内容");
+    $.confirm("自定义的消息内容", "自定义的标题");
     $.confirm("自定义的消息内容", function() {
-        //点击确认后的回调函数
-        console.log("点击确认后的回调函数");
-        //如果参数过多，建议通过 object 方式传入
-    }, function() {
-        //点击取消后的回调函数
-        console.log("点击取消后的回调函数");
-    });
+      //点击确认后的回调函数
+      }, function() {
+      //点击取消后的回调函数
+      });
     
-    $.confirm("自定义的消息内容", "这是标题", function() {
-        //点击确认后的回调函数
-        console.log("点击确认后的回调函数");
-    }, function() {
-        //点击取消后的回调函数
-        console.log("点击取消后的回调函数");
+    
+    //如果参数过多，建议通过 object 方式传入
+    $.confirm({
+      title: '标题',
+      text: '内容文案',
+      onOK: function () {
+        //点击确认
+      },
+      onCancel: function () {
+      }
     });
 
 ```
 
 
 ### prompt
+
+> 显示一个带有输入框的对话框,可以让用户输入信息
 
 ```
     /**
@@ -160,8 +181,35 @@
 
 ```
 
+###  关闭对话框
+>默认情况下，点击对话框的按钮都会先关闭对话框再触发回调函数。
+>你可以通过JS来关闭任何正在显示的对话框:
+
+```
+$.closeModal();
+```
+
+### 默认配置
+
+>对话框的默认是 $.modal.prototype.defaults，默认配置如下：
+
+```
+    defaults = $.modal.prototype.defaults = {
+      title: "提示",
+      text: undefined,
+      buttonOK: "确定",
+      buttonCancel: "取消",
+      buttons: [{
+        text: "确定",
+        className: "primary"
+      }],
+      autoClose: true //点击按钮自动关闭对话框，如果你不希望点击按钮就关闭对话框，可以把这个设置为false
+    };
+```
+
 
 
 ## License
 
 MIT © [Yang hc](https://github.com/hqwlkj)
+      
